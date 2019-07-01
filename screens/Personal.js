@@ -1,25 +1,31 @@
-import React from 'react'
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
+import React,{ Component } from 'react'
+import { StyleSheet, Text, View, FlatList, ListView, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import ListItem from '../components/ListItem'
 import FAB from '../components/FAB'
-import { addPersonal, deletePersonal } from '../actions/actions'
+import * as Actions from '../actions/index'
 
-class Personal extends React.Component {
+class Personal extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  componentDidMount(){
+    this.props.getData()
+  }
+
   render(){
     return(
       <View style={styles.container}>
-      <FlatList
-        data={this.props.personal.data}
-        renderItem={this.renderItem.bind(this)}
-        ListEmptyComponent={
-          <View>
-            <Text> Your List is complete!</Text>
-          </View>
-        }
-        keyExtractor={(item, index) => item.id}
-        style={styles.listview} />
+        <FlatList
+          data={this.props.personal}
+          renderRow={this.renderItem.bind(this)}
+          keyExtractor={(item, index) => index}
+          ListEmptyComponent={
+            <Text>You completed all your task! Congrats!</Text>
+          }
+          style={styles.listview}/>
         <View style={styles.button}>
           <FAB onPress={this.addTask.bind(this)} />
         </View>
@@ -29,42 +35,34 @@ class Personal extends React.Component {
 
   renderItem(item) {
     const onPress = () => {
-      alert('I should be deleted!')
-      //this.props.removePersonal(id)
+      alert('I got hit!')
     };
 
     return(
-      <ListItem item={this.props.personal.data} onPress={onPress}/>
-    )
+        <ListItem item={this.props.personal} onPress={onPress}/>
+    );
   }
 
-  listenForItem(items){
-    this.setState({
-      dataSource: this.props.data.cloneWithRows(this.props.personal.data)
-    });
-}
-
   addTask() {
+    console.log("personal: " + this.props.personal);
+    
     Alert.prompt(
       'Add Task to Personal list',
       'What are we doin?',
-      (input) => this.props.dispatch(addPersonal(input))
+      (input) => this.props.addPersonal(input)
     )
-    //this.props.addPersonal('New Task')
-    //alert('Add task to list')
   }
 }
 
-/*const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    addPersonal
-  }, dispatch)
-)*/
-const mapStateToProps = (state) => {
+const mapStateToProps = state => { 
   return state
 }
 
-export default connect(mapStateToProps)(Personal)
+const mapDispatchToProps = dispatch => (
+  bindActionCreators(Actions, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Personal)
 
 const styles = StyleSheet.create({
   container: {
@@ -75,7 +73,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   listview: {
-    paddingTop: 35
+    paddingTop: 45,
+    height: '100%'
   },
   button: {
     flex: 1,

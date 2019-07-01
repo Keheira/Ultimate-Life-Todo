@@ -1,3 +1,4 @@
+export const GET_DATA = 'GET_DATA'
 export const ADD_PERSONAL = 'ADD_PERSONAL'
 export const ADD_WORK = 'ADD_WORK'
 export const ADD_BUSINESS = 'ADD_BUSINESS'
