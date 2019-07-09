@@ -6,7 +6,7 @@ class FAB extends Component {
         return (
             <View style={styles.action}>
                 <TouchableHighlight onPress={this.props.onPress}>
-                <Text style={styles.actionText}>+</Text>
+                    <Text style={styles.actionText}>+</Text>
                 </TouchableHighlight>
             </View>
         );

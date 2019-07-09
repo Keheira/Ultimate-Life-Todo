@@ -1,51 +1,65 @@
 import React,{ Component } from 'react'
-import { StyleSheet, Text, View, FlatList, ListView, Alert } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
 import { connect } from 'react-redux'
+import styles from '../stylesheets/main'
 import { bindActionCreators } from 'redux';
 import ListItem from '../components/ListItem'
 import FAB from '../components/FAB'
-import * as Actions from '../actions/index'
+import { addPersonal, deletePersonal } from '../redux/actions/index'
 
 class Personal extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  componentDidMount(){
-    this.props.getData()
-  }
-
   render(){
-    return(
-      <View style={styles.container}>
-        <FlatList
-          data={this.props.personal}
-          renderRow={this.renderItem.bind(this)}
-          keyExtractor={(item, index) => index}
-          ListEmptyComponent={
-            <Text>You completed all your task! Congrats!</Text>
-          }
-          style={styles.listview}/>
-        <View style={styles.button}>
-          <FAB onPress={this.addTask.bind(this)} />
+    if(this.props.personal.todo.length == 0){
+      return(
+        <View style={styles.container}>
+          <Text>Congrats on completing your personal list!</Text>
+          <View style={styles.button}>
+            <FAB onPress={this.addTask.bind(this)} />
+          </View>
         </View>
-      </View>
-    )
+      )
+    } else {
+      return(
+        <View style={styles.container}>
+          <FlatList
+            data={this.props.personal.todo}
+            renderItem={this.renderItem.bind(this)}
+            keyExtractor={(item, index) => item.id.toString()}
+            style={styles.listview}/>
+          <View style={styles.button}>
+            <FAB onPress={this.addTask.bind(this)} />
+          </View>
+        </View>
+      )
+    }
   }
 
-  renderItem(item) {
+  renderItem({item}) {
     const onPress = () => {
-      alert('I got hit!')
-    };
+      Alert.alert(
+        item.title + ' Completed?',
+        null,
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          {
+            text: 'OK',
+            onPress: () => this.props.deletePersonal(item.id),
+            style:'destructive'
+          },
+        ]
+      )
+    }
 
     return(
-        <ListItem item={this.props.personal} onPress={onPress}/>
+        <ListItem item={item} onPress={onPress}/>
     );
   }
 
   addTask() {
-    console.log("personal: " + this.props.personal);
-    
     Alert.prompt(
       'Add Task to Personal list',
       'What are we doin?',
@@ -55,32 +69,11 @@ class Personal extends Component {
 }
 
 const mapStateToProps = state => { 
-  return state
+  return { personal: state.personal }
 }
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators(Actions, dispatch)
+  bindActionCreators({ addPersonal, deletePersonal}, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Personal)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  listview: {
-    paddingTop: 45,
-    height: '100%'
-  },
-  button: {
-    flex: 1,
-    position: 'absolute',
-    bottom: 0,
-    alignSelf: 'flex-end',
-    marginBottom: 10
-  }
-})

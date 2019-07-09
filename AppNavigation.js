@@ -9,33 +9,39 @@ import BusinessScreen from './screens/Business';
 const TabNav = createBottomTabNavigator({
   Home: {
     screen: PersonalScreen,
-    tabBarLabel: 'Personal',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-      />
-    )
+    navigationOptions: ({navigation}) => ({
+      tabBarLabel: 'Personal',
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
+        />
+      )
+    })
   },
   Work: {
     screen: WorkScreen,
-    tabBarLabel: 'Work',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-      />
-    )
+    navigationOptions: ({navigation}) => ({
+      tabBarLabel: 'Work',
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={Platform.OS === 'ios' ? 'ios-briefcase' : 'work'}
+        />
+      )
+    })
   },
   Business: {
     screen: BusinessScreen,
-    tabBarLabel: 'Business',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-      />
-    )
+    navigationOptions: ({navigation}) => ({
+      tabBarLabel: 'Business',
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={Platform.OS === 'ios' ? 'ios-business' : 'business'}
+        />
+      )
+    })
   }},
   {
     initialRouteName: 'Home'

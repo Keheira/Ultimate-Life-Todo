@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Monthly ToDo",
+    "name": "Average ToDo",
     "slug": "ToDo",
+    "description":"This app allows you to complete you to seperate your big todo list to 3 major areas of your life. Your personal todo, your 9-5 todo (work), and your side hustle todo (business).",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",

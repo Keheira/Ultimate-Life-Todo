@@ -4,9 +4,9 @@ import { View, TouchableHighlight, Text } from 'react-native';
 class ListItem extends Component {
     render() {
         return (
-            <TouchableHighlight onPress={this.props.onPress}>
+            <TouchableHighlight onPress={this.props.onPress} onLongPress={this.props.onLongPress}>
                 <View style={styles.li}>
-                    <Text>{this.props.item.title}</Text>
+                    <Text style={styles.liTitle}>{this.props.item.title}</Text>
                 </View>
             </TouchableHighlight>
         );
@@ -16,20 +16,17 @@ class ListItem extends Component {
 const styles = {
     li: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#fff',
-        borderBottomColor: '#eee',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        borderBottomColor: '#FFA500',
         borderColor: 'transparent',
+        alignItems: 'center',
         borderWidth: 1,
-        paddingLeft: 16,
-        paddingTop: 14,
-        paddingBottom: 16
     },
     liTitle: {
-        color: '#228B22',
-        fontSize: 16
-    }
+        flex: 1,
+        fontSize: 20
+    },
 }
 
 export default ListItem;
