@@ -5,7 +5,7 @@ import {
 
 let id = 0
 let personalCount = 0
-let workCount = 1
+let workCount = 0
 let businessCount = 0
 
 /* Personal Actions */
