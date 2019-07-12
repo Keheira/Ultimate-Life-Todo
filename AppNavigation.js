@@ -26,7 +26,7 @@ const TabNav = createBottomTabNavigator({
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
-          name={Platform.OS === 'ios' ? 'ios-briefcase' : 'work'}
+          name={Platform.OS === 'ios' ? 'ios-briefcase' : 'md-briefcase'}
         />
       )
     })
@@ -38,7 +38,7 @@ const TabNav = createBottomTabNavigator({
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
-          name={Platform.OS === 'ios' ? 'ios-business' : 'business'}
+          name={Platform.OS === 'ios' ? 'ios-business' : 'md-business'}
         />
       )
     })
