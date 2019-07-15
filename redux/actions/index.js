@@ -4,8 +4,8 @@ import {
     ADD_BUSINESS, REMOVE_BUSINESS, UPDATE_BUSINESS, BUSINESS_COUNT } from './actionsTypes'
 
 let id = 0
-let personalCount = 0
-let workCount = 1
+let personalCount = 1
+let workCount = 0
 let businessCount = 0
 
 /* Personal Actions */
@@ -22,7 +22,7 @@ export const deletePersonal = id => ({
     id: id,
 })
 
-/*export const updatePersonal = (id, item) => ({
+export const updatePersonal = (id, item) => ({
     type: UPDATE_PERSONAL,
     id: id,
     title: item
@@ -31,7 +31,7 @@ export const deletePersonal = id => ({
 export const increasePersonalCount = () => ({
     type: PERSONAL_COUNT,
     count: personalCount++
-})*/
+})
 
 /* Work Actions */
 
