@@ -1,12 +1,15 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import { createAppContainer } from 'react-navigation'
+import Colors from './constants/Colors'
 import TabBarIcon from './components/TabBarIcon';
 import PersonalScreen from './screens/Personal';
 import WorkScreen from './screens/Work';
 import BusinessScreen from './screens/Business';
 
-const TabNav = createBottomTabNavigator({
+
+const TabNav = createMaterialBottomTabNavigator({
   Home: {
     screen: PersonalScreen,
     navigationOptions: ({navigation}) => ({
@@ -44,7 +47,10 @@ const TabNav = createBottomTabNavigator({
     })
   }},
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Home',
+    activeColor: Colors.tabIconSelected,
+    inactiveColor: Colors.tabIconDefault,
+    barStyle: { backgroundColor: '#FFA500'}
   }
 )
 
