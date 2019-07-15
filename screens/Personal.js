@@ -1,10 +1,10 @@
 import React,{ Component } from 'react'
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
+import { Text, View, FlatList, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import styles from '../stylesheets/main'
 import { bindActionCreators } from 'redux';
 import ListItem from '../components/ListItem'
-import FAB from '../components/FAB'
+import { FAB } from 'react-native-paper'
 import { addPersonal, deletePersonal } from '../redux/actions/index'
 
 class Personal extends Component {
@@ -13,9 +13,13 @@ class Personal extends Component {
       return(
         <View style={styles.container}>
           <Text>Congrats on completing your personal list!</Text>
-          <View style={styles.button}>
-            <FAB onPress={this.addTask.bind(this)} />
-          </View>
+          <FAB
+            style={styles.fab}
+            large
+            icon="add"
+            color='#FFFFFF'
+            accessibilityLabel='Add personal task'
+            onPress={this.addTask.bind(this)} />
         </View>
       )
     } else {
@@ -27,7 +31,13 @@ class Personal extends Component {
             keyExtractor={(item, index) => item.id.toString()}
             style={styles.listview}/>
           <View style={styles.button}>
-            <FAB onPress={this.addTask.bind(this)} />
+          <FAB
+            style={styles.fab}
+            large
+            icon="add"
+            color='#FFFFFF'
+            accessibilityLabel='Add personal task'
+            onPress={this.addTask.bind(this)} />
           </View>
         </View>
       )

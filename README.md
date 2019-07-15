@@ -6,5 +6,6 @@ You will be able to add, update, and complete task as needed.
 
 ## Version Release Notes
 
-v1.0: Able to add and delete tast to individual list
+v1.0: Simple todo that allows you to add and delete task
+v1.5: Update styling and Android Fixes
 v2.0: Able to upgrade individual list items & track total amount of completed task

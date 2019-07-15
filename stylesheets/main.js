@@ -15,9 +15,15 @@ export default StyleSheet.create({
     },
     button: {
         flex: 1,
-        position: 'absolute',
+        
         bottom: 0,
         alignSelf: 'flex-end',
-        marginBottom: 10
+        marginBottom: 10,
+    },
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
     }
 })
