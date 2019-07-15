@@ -9,17 +9,23 @@ export default function reducer(state = initialState.personal,action){
                     todo: [...state.todo, action.payload]
                 }
             case REMOVE_PERSONAL:
-                return {todo: state.todo.filter(item => item.id !== action.id)}
+                return {
+                    ...state,
+                    todo: state.todo.filter(item => item.id !== action.id)
+                }
             case UPDATE_PERSONAL:
-                    return {
-                        todo: state.todo.map(item => {
-                            if(item.id !== action.id) return item
+                return {
+                    ...state,
+                    todo: state.todo.map(item => {
+                        if(item.id === action.id){
                             return {
                                 ...item,
-                                ...action.title
+                                title: action.title
                             }
-                        })
-                    }
+                        }
+                        return item
+                    })
+                }
             case PERSONAL_COUNT:
                 return {
                     ...state,
