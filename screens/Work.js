@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import styles from '../stylesheets/main'
 import { bindActionCreators } from 'redux';
 import ListItem from '../components/ListItem'
-import FAB from '../components/FAB'
+import { FAB } from 'react-native-paper'
 import { addWork, deleteWork } from '../redux/actions/index'
 
 class Work extends React.Component {
@@ -13,9 +13,13 @@ class Work extends React.Component {
       return(
         <View style={styles.container}>
           <Text>Congrats on completing your work list!</Text>
-          <View style={styles.button}>
-            <FAB onPress={this.addTask.bind(this)} />
-          </View>
+          <FAB
+            style={styles.fab}
+            large
+            icon="add"
+            color='#FFFFFF'
+            accessibilityLabel='Add personal task'
+            onPress={this.addTask.bind(this)} />
         </View>
       )
     } else {
@@ -26,9 +30,13 @@ class Work extends React.Component {
             renderItem={this.renderItem.bind(this)}
             keyExtractor={(item, index) => item.id.toString()}
             style={styles.listview}/>
-          <View style={styles.button}>
-            <FAB onPress={this.addTask.bind(this)} />
-          </View>
+          <FAB
+            style={styles.fab}
+            large
+            icon="add"
+            color='#FFFFFF'
+            accessibilityLabel='Add personal task'
+            onPress={this.addTask.bind(this)} />
         </View>
       )
     }
