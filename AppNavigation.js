@@ -1,12 +1,13 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import { createAppContainer } from 'react-navigation'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
 import Colors from './constants/Colors'
-import TabBarIcon from './components/TabBarIcon';
-import PersonalScreen from './screens/Personal';
-import WorkScreen from './screens/Work';
-import BusinessScreen from './screens/Business';
+import TabBarIcon from './components/TabBarIcon'
+import NewItem from './screens/NewItem'
+import PersonalScreen from './screens/Personal'
+import WorkScreen from './screens/Work'
+import BusinessScreen from './screens/Business'
 
 
 const TabNav = createMaterialBottomTabNavigator({
@@ -54,4 +55,13 @@ const TabNav = createMaterialBottomTabNavigator({
   }
 )
 
-export default createAppContainer(TabNav)
+const MainNav = createStackNavigator({
+  Main: TabNav,
+  NewItem: NewItem
+},
+  {
+    initialRouteName: 'Main'
+  }
+)
+
+export default createAppContainer(MainNav)

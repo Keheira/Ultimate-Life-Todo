@@ -5,6 +5,12 @@
     "description":"This app allows you to complete you to seperate your big todo list to 3 major areas of your life. Your personal todo, your 9-5 todo (work), and your side hustle todo (business).",
     "privacy": "public",
     "sdkVersion": "33.0.0",
+    "ios": {
+      "bundleIdentifier": "backpack.media.todo"
+    },
+    "android": {
+      "package": "backpack.media.todo"
+    },
     "platforms": [
       "ios",
       "android"
@@ -12,11 +18,6 @@
     "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#FFA500"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

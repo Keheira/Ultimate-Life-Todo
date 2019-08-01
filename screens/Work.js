@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
+import { Text, View, FlatList, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import styles from '../stylesheets/main'
 import { bindActionCreators } from 'redux';
@@ -70,7 +70,7 @@ class Work extends React.Component {
   addTask() {
     Alert.prompt(
       'Add Task to Personal list',
-      'What are we doin?',
+      'What needs to be completed?',
       (input) => this.props.addWork(input)
     )
   }

@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Text, View, FlatList, Alert } from 'react-native'
+import { Text, View, FlatList, Alert} from 'react-native'
 import { connect } from 'react-redux'
 import styles from '../stylesheets/main'
 import { bindActionCreators } from 'redux';
@@ -8,18 +8,25 @@ import { FAB } from 'react-native-paper'
 import { addPersonal, deletePersonal } from '../redux/actions/index'
 
 class Personal extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      showInput: false
+    }
+  }
   render(){
     if(this.props.personal.todo.length == 0){
       return(
         <View style={styles.container}>
           <Text>Congrats on completing your personal list!</Text>
           <FAB
+            hide
             style={styles.fab}
             large
             icon="add"
             color='#FFFFFF'
             accessibilityLabel='Add personal task'
-            onPress={this.addTask.bind(this)} />
+            onPress={this.addDetails.bind(this)} />
         </View>
       )
     } else {
@@ -37,7 +44,7 @@ class Personal extends Component {
             icon="add"
             color='#FFFFFF'
             accessibilityLabel='Add personal task'
-            onPress={this.addTask.bind(this)} />
+            onPress={this.addDetails.bind(this)} />
           </View>
         </View>
       )
@@ -69,12 +76,10 @@ class Personal extends Component {
     );
   }
 
-  addTask() {
-    Alert.prompt(
-      'Add Task to Personal list',
-      'What are we doin?',
-      (input) => this.props.addPersonal(input)
-    )
+  addDetails() {
+    this.props.navigation.navigate('NewItem', {
+      list: 'work'
+    })
   }
 }
 

@@ -7,6 +7,7 @@ class ListItem extends Component {
             <TouchableHighlight onPress={this.props.onPress} onLongPress={this.props.onLongPress}>
                 <View style={styles.li}>
                     <Text style={styles.liTitle}>{this.props.item.title}</Text>
+                    <Text style={}>{this.props.item.date}</Text>
                 </View>
             </TouchableHighlight>
         );
@@ -26,6 +27,10 @@ const styles = {
     liTitle: {
         flex: 1,
         fontSize: 20
+    },
+    liTitle: {
+        flex: 1,
+        fontSize: 16
     },
 }
 
